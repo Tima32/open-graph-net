@@ -4,7 +4,7 @@ local component = require("component")
 
 local function event_handler(target, source, port, distance, message_0)
     print(message_0)
-    component.beep(300)
+    component.computer.beep(300)
 end
 
 function start()
