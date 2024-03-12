@@ -7,8 +7,15 @@ local function event_handler(event_name, target, source, port, distance, message
     component.computer.beep(300)
 end
 
+local function get_my_hostname()
+    return os.getenv('HOSTNAME')
+end
+
 function start()
     print('start')
+
+    print(get_my_hostname())
+
     event.listen('modem_message', event_handler)
 end
 
