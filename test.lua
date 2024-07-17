@@ -22,7 +22,7 @@ local function lamp_set(byte_color)
     end
     component.colorful_lamp.setLampColor(tonumber(byte_color, 2))
 end
-
+lamp_set(lamp_black)
 
 local message = {command='add_me', hostname='test', host_uuid='044b80dc-1234-1234-1234-123456789123'}
 
