@@ -33,7 +33,7 @@ local function command_add_me_request()
     modem.broadcast(config_port, serialization.serialize(answer))
 end
 local function command_add_me_answer()
-    lamp_set(lamp_white)
+    lamp_set(lamp_yelow)
 end
 
 
