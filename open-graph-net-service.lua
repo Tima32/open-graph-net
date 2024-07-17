@@ -22,8 +22,18 @@ local function lamp_set(byte_color)
 end
 
 
+-- format --
+-- {command='add_me', hostname='name', hostu_uid='044b80dc-1234-1234-1234-123456789123'}
+-- {command='add_me_andswer, status='status='status'}
+
 local function command_add_me_request()
     lamp_set(lamp_green)
+
+    local answer = {command='add_me_answer', status='test'}
+    modem.broadcast(config_port, serialization.serialize(answer))
+end
+local function command_add_me_answer()
+    lamp_set(lamp_white)
 end
 
 
@@ -36,6 +46,8 @@ local function event_handler(event_name, target, source, port, distance, message
 
     if command == 'add_me' then
         command_add_me_request()
+    elseif command == 'add_me_answer' then
+        command_add_me_answer()
     else
         lamp_set(lamp_black)
     end
