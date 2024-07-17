@@ -2,6 +2,8 @@ local event         = require("event")
 local component     = require("component")
 local serialization = require("serialization")
 
+local config_port = 123
+
 -- debud lamp
 local lamp_red       = '111110000000000'
 local lamp_green     = '000001111100000'
@@ -47,8 +49,8 @@ end
 -- service command
 function start()
     print('start')
-
     print(get_my_hostname())
+    component.modem.open(config_port)
 
     event.listen('modem_message', event_handler)
 end
