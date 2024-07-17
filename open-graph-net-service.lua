@@ -1,16 +1,50 @@
-local event = require("event")
-local component = require("component")
+local event         = require("event")
+local component     = require("component")
+local serialization = require("serialization")
+
+-- debud lamp
+local lamp_red       = '111110000000000'
+local lamp_green     = '000001111100000'
+local lamp_blue      = '000000000011111'
+local lamp_yelow     = '111111111100000'
+local lamp_violet    = '111110000011111'
+local lamp_turquoise = '000001111111111'
+local lamp_white     = '111111111111111'
+local lamp_black     = '000000000000000'
+
+local function lamp_set(byte_color)
+    if component.colorful_lamp == nil then
+        return
+    end
+    component.colorful_lamp.setLampColor(tonumber(byte_color, 2))
+end
+
+
+local function command_add_me_request()
+    lamp_set(lamp_green)
+end
 
 
 local function event_handler(event_name, target, source, port, distance, message_0)
-    print(message_0)
-    component.computer.beep(300)
+    local table = serialization.unserialize(message_0)
+    if table == nil then return end
+
+    local command = table['command']
+    if command == nil then return end
+
+    if command == 'add_me' then
+        command_add_me_request()
+    else
+        lamp_set(lamp_black)
+    end
+
 end
 
 local function get_my_hostname()
     return os.getenv('HOSTNAME')
 end
 
+-- service command
 function start()
     print('start')
 
