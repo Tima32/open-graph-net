@@ -30,7 +30,7 @@ local function command_add_me_request()
     lamp_set(lamp_green)
 
     local answer = {command='add_me_answer', status='test'}
-    modem.broadcast(config_port, serialization.serialize(answer))
+    componest.modem.broadcast(config_port, serialization.serialize(answer))
 end
 local function command_add_me_answer()
     lamp_set(lamp_yelow)
