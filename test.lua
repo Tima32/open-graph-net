@@ -15,6 +15,7 @@ local lamp_violet    = '111110000011111'
 local lamp_turquoise = '000001111111111'
 local lamp_white     = '111111111111111'
 local lamp_black     = '000000000000000'
+local lamp_gray      = '110001100011000'
 
 local function lamp_set(byte_color)
     if component.colorful_lamp == nil then
